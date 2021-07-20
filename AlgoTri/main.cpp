@@ -9,6 +9,8 @@
 #include <iostream>
 #include <vector>
 #include <algorithm>
+#include <string>
+
 
 int main()
 {
@@ -21,31 +23,53 @@ int main()
 	{
 		for (int i = 0; i != *it; i++)
 		{
-			std::cout << " * ";
+			std::cout << " $ ";
 		}
 
 		std::cout << std::endl;
 	}
 
+	bool valide = false; 
 
-	// Trier les éléments 
-	for (auto it = chiffres.begin(); it != chiffres.end(); ++it)
+	while (!valide)
 	{
-		std::swap(*it, *std::min_element(it, chiffres.end()));
-	}
+	    std::cout << "Voulez-vous trier les donnees ? " << std::endl; 
+		std::cout << "1 -> Oui" << std::endl; 
+		std::cout << "2 -> Non" << std::endl; 
 
-	// Affichage dans la console du vecteur trié
-	for (auto it = chiffres.begin(); it != chiffres.end(); ++it)
-	{
-		for (int i = 0; i != *it; i++)
+		std::string reponse; 
+		std::getline(std::cin, reponse); 
+
+
+		if (reponse == "1")
 		{
-			std::cout << " * "; 
+			valide = true; 
+			std::cout << "Vous avez dit Oui, voici les elements trie" << std::endl; 
+
+			// Trier les éléments 
+			for (auto it = chiffres.begin(); it != chiffres.end(); ++it)
+			{
+				std::swap(*it, *std::min_element(it, chiffres.end()));
+			}
+
+			// Affichage dans la console du vecteur trié
+			for (auto it = chiffres.begin(); it != chiffres.end(); ++it)
+			{
+				for (int i = 0; i != *it; i++)
+				{
+					std::cout << " $ "; 
+				}
+
+				std::cout << std::endl;
+			}
+		}
+		else if (reponse == "2")
+		{
+			valide = true; 
+			std::cout << "Vous avez dit Non, Merci a la prochaine !" << std::endl; 
 		}
 
-		std::cout << std::endl;
 	}
-	
-
 
 
 	return 0; 
